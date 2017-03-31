@@ -72,7 +72,6 @@ public class BarRestController {
                             @RequestParam Integer zipcode, @RequestParam String barName) {
         BarAppUser foundUsers = storedBarUser.findByUsername(username);
         BarInformation foundBars = storedBarInformation.findByBarName(barName);
-        //BarAddress existingStreetNames = storedBarAddressRepo.findByStreetAddress(streetAddress);
         String resultOfBarSave = null;
         BarAddress barAddressToSave = new BarAddress();
         BarInformation barInformationToSave = new BarInformation();
@@ -251,7 +250,6 @@ public class BarRestController {
     @RequestMapping(path = "/barLocation/getDrinksByType", method = RequestMethod.GET)
     public List<BarDrinks> findAllDrinksByAlcoholType(@RequestParam(value = "Please enter the type of spirit for a list of " +
             "alcohol brands or enter mixer for a list of mixers") String beverageType) {
-        //List<BarDrinks> returnDrinks = null;
 
         String upperCaseBeverage = beverageType.substring(0, 1).toUpperCase() + beverageType.substring(1);
         List<BarDrinks> foundDrinks = storedDrinksandMixers.findByBeverageType(upperCaseBeverage);
@@ -272,10 +270,7 @@ public class BarRestController {
         if (alcoholName != null && mixerName != null) {
             return "Please choose either an alcohol name or a mixer name. Unable to search with both values populated.";
 
-//            List<BarInformation> findByAlcoholName = storedBarInformation.findMixerAndAlcoholByBarDrinkInformation(findDrinkByName,findMixerByName);
-//            findByAlcoholName.forEach(p -> p.getBarName().toString());
-//
-//            return "Here are a list of bars that have " + alcoholName + " & "+mixerName+"\n" + findByAlcoholName;
+
         }
 
         if (findDrinkByName != null && mixerName == null) {
@@ -298,6 +293,19 @@ public class BarRestController {
 
         }
         return "Please enter a alcohol name or mixer type to search for.";
+    }
+
+    @RequestMapping(path="/barLocation/removeDrinkFromInventory",method = RequestMethod.DELETE)
+    public String removeDrinkFromInventory(@RequestParam String barName, @RequestParam String alcoholName){
+        BarDrinks findDrinkByName = storedDrinksandMixers.findByAlcoholName(alcoholName);
+        BarInformation foundBar = storedBarInformation.findByBarName(barName);
+        List<BarDrinks> listInventory = foundBar.getBarDrinkInformation();
+        listInventory.remove(findDrinkByName);
+        storedBarInformation.save(foundBar);
+
+
+        return "Inventory item "+alcoholName+"was removed from "+barName+"'s inventory";
+
     }
 }
 

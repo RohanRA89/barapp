@@ -14,5 +14,6 @@ public interface BarInformationRepo extends CrudRepository<BarInformation,Long> 
     public List<BarInformation> findAlcoholByBarDrinkInformation(BarDrinks alcoholName);
     public List<BarInformation> findMixerByBarDrinkInformation(BarDrinks mixerName);
     public List<BarInformation> findMixerAndAlcoholByBarDrinkInformation(BarDrinks alcoholName, BarDrinks mixerName);
+    public BarInformation findBarsAlcoholNameByBarDrinkInformation(BarDrinks alcoholName);
 
 }

@@ -1,5 +1,7 @@
 package com.ironyard.data;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -8,6 +10,8 @@ import javax.persistence.Id;
  * Created by rohanayub on 3/15/17.
  */
 @Entity
+@JsonInclude(JsonInclude.Include.NON_NULL)
+
 public class BarAddress {
     @Id
     @GeneratedValue
@@ -16,6 +20,8 @@ public class BarAddress {
     private String cityName;
     private String stateName;
     private Integer zipcode;
+    private String jsonResult;
+
 
     public long getId() {
         return id;
@@ -55,6 +61,14 @@ public class BarAddress {
 
     public void setZipcode(Integer zipcode) {
         this.zipcode = zipcode;
+    }
+
+    public String getJsonResult() {
+        return jsonResult;
+    }
+
+    public void setJsonResult(String jsonResult) {
+        this.jsonResult = jsonResult;
     }
 
     public BarAddress() {

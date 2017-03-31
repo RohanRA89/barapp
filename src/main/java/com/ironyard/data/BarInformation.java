@@ -1,5 +1,7 @@
 package com.ironyard.data;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -7,6 +9,8 @@ import java.util.List;
  * Created by rohanayub on 3/15/17.
  */
 @Entity
+@JsonInclude(JsonInclude.Include.NON_NULL)
+
 public class BarInformation {
     @Id
     @GeneratedValue
@@ -16,8 +20,8 @@ public class BarInformation {
     private List<BarAddress> barAddress;
     @ManyToMany(cascade = CascadeType.ALL)
     private List<BarDrinks> barDrinkInformation;
-//    @ManyToMany(cascade = CascadeType.ALL)
-//    private List<BarSpecials> barSpecials;
+    private String jsonResult;
+
 
     public long getId() {
         return id;
@@ -51,13 +55,13 @@ public class BarInformation {
         this.barDrinkInformation = barDrinkInformation;
     }
 
-//    public List<BarSpecials> getBarSpecials() {
-//        return barSpecials;
-//    }
-//
-//    public void setBarSpecials(List<BarSpecials> barSpecials) {
-//        this.barSpecials = barSpecials;
-//    }
+    public String getJsonResult() {
+        return jsonResult;
+    }
+
+    public void setJsonResult(String jsonResult) {
+        this.jsonResult = jsonResult;
+    }
 
     public BarInformation() {
 

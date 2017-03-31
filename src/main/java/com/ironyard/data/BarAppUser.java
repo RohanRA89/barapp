@@ -15,6 +15,8 @@ public class BarAppUser {
     private String realName;
     private String username;
     private String password;
+    private String jsonResult;
+
 
     public Long getId() {
         return id;
@@ -46,6 +48,14 @@ public class BarAppUser {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getJsonResult() {
+        return jsonResult;
+    }
+
+    public void setJsonResult(String jsonResult) {
+        this.jsonResult = jsonResult;
     }
 
     public BarAppUser() {

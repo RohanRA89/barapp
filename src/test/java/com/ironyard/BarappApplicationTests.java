@@ -111,7 +111,10 @@ public class BarappApplicationTests {
 
 			String upperCase = barNameOne.substring(0,1).toUpperCase()+barNameOne.substring(1);
 			System.out.println(upperCase);
-
+//            List<BarInformation> findByAlcoholName = storedBarInformation.findMixerAndAlcoholByBarDrinkInformation(findDrinkByName,findMixerByName);
+//            findByAlcoholName.forEach(p -> p.getBarName().toString());
+//
+//            return "Here are a list of bars that have " + alcoholName + " & "+mixerName+"\n" + findByAlcoholName;
 
 		}
 
